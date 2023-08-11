@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #root {
+            border: 1px solid red;
+            padding: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id = "root"></div>
+    <script>
+        //criando um novo elemento
+        const parag = document.createElement('p')
+        parag.textContent = 'Este paragrafo foi criado em JavaScript'
+
+        //captura a div root
+        const root = document.getElementById('root')
+
+        //inserir o paragrafo criado dentro da div root
+        root.appendChild(parag)
+
+        //criando uma nova div
+        const novaDiv = document.createElement('div')
+
+        //ajustando o conteudo e aparencia da div
+        novaDiv.textContent = 'Div criada com JavaScripit'
+        novaDiv.style.border = '3px dotted green'
+        novaDiv.style.backgroundColor = 'Linegreen'
+        novaDiv.style.padding = '18px'
+        novaDiv.style.marginTop = '58px'
+        novaDiv.style.textAlign = 'center'
+        novaDiv.id = 'div-verde'
+
+        root.appendChild(novaDiv)
+    </script>
+</body>
+</html>
