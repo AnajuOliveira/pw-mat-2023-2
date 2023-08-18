@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .sauda {
+            background-color: indigo;
+            border-radius: 8px;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-family: Cambria, 'Times New Roman', serif;
+            margin-bottom: 20px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+        }
+    </style>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        /* FUNÇÕES DE COMPONENTE
+        -sempre iniciar com letra Maiuscula
+        -receber props entre {} */
+
+        function Saudar({nome, msg}) {
+            return <div className = "sauda"> {msg}, {nome}! </div>
+        }
+
+        //criação de um componente usando chamada de função
+        const saudar1 = Saudar({msg: 'Bom dia', nome: 'Helena'})
+
+        //Utilizado JSX
+        const saudar2 = <Saudar msg = "Boa noite" nome = "Brasil" />
+
+        const container =
+            <> {/*Isso é chamado FRAGENT, pseudoelemento usado para agrupar outros componentes, sem gerar resultado em HTML*/}
+                {saudar1}
+                {saudar2}
+                {/* Componente criado diretamente dentro do containet*/}
+                <Saudar msg = "passa o pix" nome = "pai" />
+            </>
+
+            const root = ReactDOM.createRoot(document.getElementById("root"));
+            root.render(container)
+    </script>
+</body>
+</html>

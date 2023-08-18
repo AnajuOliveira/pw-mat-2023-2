@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .formata{
+            font-family: 'Courier New', monospace;
+            color: blue;
+            background-color: powderblue;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+    </style>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const parag1 = React.createElement("p", {
+            className: "formata",
+            children: 'Paragrafo criada apenas com react'
+        })
+
+        const parag2 = <p className = "formata">Parágrafo formado com babel e SJX.</p>
+
+        //Criando variáveis para representar pronps
+        const classeCss = 'formata'
+        const conteudo = 'Parágrafo criado com Babel+JSX e variáveis interpoladas'
+
+        //Criando um elemento usando variáveis interpoladas
+        const parag3 = <p className = {classeCss}> {conteudo} </p>
+
+        //definindo um objeto com props
+        const atribs = {
+            className: 'formata',
+            children: 'Parágrafo criado com Babel+JSX e espalhamento de props'
+        }
+
+        const parag4 = <p {...atribs}/>
+
+        // const container = React.createElement(
+        //     'div',
+        //     {id: 'container'},
+        //     [parag1, parag2, parag3, parag4]
+        // )
+
+        //Refazendo o container com JSX
+        const container =
+            <div id = "container">
+                {parag1}
+                {parag2}
+                {parag3}
+                {parag4}
+            </div>
+
+        const root = ReactDOM.createRoot(document.getElementById("root"))
+        root.render(container)
+    </script>
+</body>
+</html>
