@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js">
+    </script>
+    
+    <div id="root"></div>
+    <script type = 'text/babel'>
+        function Form(){
+
+            const nomeRef = React.userRef()
+            const sobrenomeRef = React.userRef()
+            const maiuscRef = React.userRef()
+            const resultadoRef = React.userRef()
+
+            let nome, sobrenome, maiusc
+
+            function handleChange(event) {
+                maiusc = maiuscRef.current.value
+
+                if(maiusc) {
+                    nome = nomeRef.current.value.toUperCase()
+                    sobrenome = sobrenomeRef.current.value.toUperCase()
+                }
+                else {
+                    nome = nomeRef.current.value
+                    sobrenome = sobrenomeRef.current.value
+                }
+
+                resultadoRef.current.textContent = nome + ' ' + sobrenome
+            }
+
+            function handleSubmit(event)
+
+            return <>
+                    <h1> Formulário React </h1>
+                    
+                    <form onSubmit = {handleSubmit}>
+                        <div>
+                            <label>
+                                <span>Nome</span><br />
+                                <input ref = {nomeRef} onChange={handleChange} />
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <span>Sobrenome</span><br />
+                                <input ref={sobrenomeRef} onChange = {handleChange} />
+                            </label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input type = "checkbox" ref={maiuscRef} onClick = {handleChange}/>
+                                &nbsp;
+                                <span> Colocar o nome completo em MAIUSCULA </span> <br />
+                            </label>
+                        </div>
+
+                        <div
+                            style={{ borderRadius: '10px', border: '1px solid blue' }}
+                            ref={resultadoRef}
+                        />
+
+                        <div>
+                            <input type="submit" value="Enviar" />
+                        </div>
+                    </form>
+                </>
+        }
+
+        const container =
+        <>
+            <form />
+        </>
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(container)
+    </script>
+</body>
+</html>
