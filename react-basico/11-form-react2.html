@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        /*
+          Formulário que pede dois números e exibe a soma deles
+        */
+
+        function Form() {
+
+            //let num1, num2
+
+            /* Variáveis de Estado: são variáveis capazes de preservar seu valor entre atualizações de componentes */
+            const [num1, setNum1] = react.useState()
+            const [num2, setNum2] = react.useState()
+
+            // function handleChange1(event) {
+            //     console.count('Atualizou!')
+            //     num1 = event.target.value
+            // }
+
+            // function handleChange2(event) {
+            //     console.count('Atualizou!')
+            //     num2 = event.target.value
+            // }
+
+            return <>
+                <h1>Soma dois números</h1>
+                <form>
+                    <div>
+                        <label>
+                            <input type="number" onChange = {handleChange1} value = {num1} />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <span>Segundo número</span><br />
+                            <input type="number" onChange={handleChange2} value = {num2} />
+                        </label>
+                    </div>
+                    <div>
+                        Soma: {Number(num1) + Number(num2)}
+                    </div>
+                </form>
+            </>
+        }
+
+        const container = <>
+            <Form />
+        </>
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(container)
+
+    </script>
+
+</body>
+
+</html>

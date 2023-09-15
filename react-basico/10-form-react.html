@@ -37,7 +37,10 @@
                 resultadoRef.current.textContent = nome + ' ' + sobrenome
             }
 
-            function handleSubmit(event)
+            function handleSubmit(event){
+                event.preventDefault()
+                alert(`Olá, ${nome} ${sobrenome}`)
+            }
 
             return <>
                     <h1> Formulário React </h1>
