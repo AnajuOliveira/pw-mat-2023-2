@@ -1,93 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- v6 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
+    <title>Form com REACT</title>
+</head>
+
+<body>
     <div id="root"></div>
-    
     <script type="text/babel">
-         /*
-         1) Crie um formulário e coloque nele um input numérico com o label "Valor em reais".
-         2) Coloque outro input numérico com o label "Cotação do dólar".
-         3) Coloque, também, uma div para exibir o resultado da conversão de moeda.
-         4) Crie e coloque hooks useRef nos três elementos criados.
-         5) Escreva uma única função handleChange para interceptar a mundança nos dois inputs
-            e atualizar variáveis quando o respectivo valor mudar.
-         6) Usando as variáveis que foram atualizadas em handleChange, exiba na div de resultado
-            o valor convertido.
-         7) Após testar e comprovar o funcionamento, tire uma cópia do arquivo e refaça o exercício,
-            com cada input tendo sua própria função onChange e usando variáveis de estado (useState)
-            para armazenar os valores quando os inputs foram alterados.
-   
-         Este exercício contará para a nota de Participação e Assiduidade (PA).
-       */
+        /*
+        1) Crie um formulário e coloque nele um input numérico com o label "Valor em reais".
+        2) Coloque outro input numérico com o label "Cotação do dólar".
+        3) Coloque, também, uma div para exibir o resultado da conversão de moeda.
+        4) Crie e coloque hooks useRef nos três elementos criados.
+        5) Escreva uma única função handleChange para interceptar a mundança nos dois inputs
+           e atualizar variáveis quando o respectivo valor mudar.
+        6) Usando as variáveis que foram atualizadas em handleChange, exiba na div de resultado
+           o valor convertido.
+        Este exercício contará para a nota de Participação e Assiduidade (PA).
+      */
 
-    function Form(){
-        const realRef = React.useRef()
-        const dolarRef = React.useRef()
-        const resultRef = React.useRef()
+        function Form() {
+            const realRef = React.useRef();
+            const dolarRef = React.useRef();
+            const resultRef = React.useRef();
 
-        let real, dolar
+            let real, dolar;
 
-       function handleChange(event) {
-        real = Number(realRef.current.value)
-        dolar = Number(dolarRef.current.value)
+            function handleChange(event) {
+                const real = Number(realRef.current.value);
+                const dolar = Number(dolarRef.current.value);
 
-        let convert = real / dolar
+                const convertido = real / dolar;
 
-        resultRef.current.textContent = Converter
-       }
+                resultRef.current.textContent = convertido.toLocaleString(
+                    // usa as convenções de separador de milhar e decimal
+                    // da língua inglesa. Português do Brasil é pt-BR
+                    "en-US",
+                    // USD ~> Dólar americano ($). Real brasileiro é BRL
+                    { style: "currency", currency: "USD" }
+                );
+            }
 
-       function handleSubmit(event){
-        event.preventDefsult()
-       }
+            function handleSubmit(event) {
+                event.preventDefault();
+            }
 
-        return( 
-            <>
-                <h1> Converção de real para dolar </h1>
-            
-                <form onSubmit = {handleSubmit}>
-                    <div>
-                        <label>
-                            <span> Real </span><br/>
-                            <input ref = {realRef} onChange = {handleChenge} />
-                        </label>
-                    </div>
+            return (
+                <>
+                    <h1>Formulário React</h1>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label>
+                                <span>Valor em reais R$:</span> <br />
+                                <input ref={realRef} onChange={handleChange} />
+                            </label>
+                        </div>
 
-                    <div>
-                        <label>
-                            <span> Cotação do dólar </span><br />
-                            <input ref={dolarRef} onChange={handleChenge} />
-                        </label>
-                    </div>
+                        <div>
+                            <label>
+                                <span>Cotação do dólar $:</span> <br />
+                                <input ref={dolarRef} onChange={handleChange} />
+                            </label>
+                        </div>
 
-                    <div>
-                        <input type = "submit" value = "Converter" />
-                    </div>
-
-                    <div>
-                        ref = {resultRef}
-                    </div>
-                </form>
-            </>
-        )
-    }
+                        <div
+                            style={{
+                                borderRadius: "10px",
+                                border: "1px solid blue",
+                                padding: "10px",
+                                marginTop: "10px",
+                                marginBottom: " 10px",
+                            }}
+                            ref={resultRef}
+                        />
+                    </form>
+                </>
+            );
+        }
 
         const container = (
             <>
                 <Form />
             </>
-        )
+        );
 
-        const root = ReactDOM.createRoot(document.getElementById)
-        root.render(container)
+        const root = ReactDOM.createRoot(document.getElementById("root"));
+        root.render(container);
     </script>
 </body>
+
 </html>

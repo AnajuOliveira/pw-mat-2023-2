@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo do Índice de Massa Corporal (IMC)</title>
+</head>
+
+<body>
+    <h1>Cálculo do Índice de Massa Corporal</h1>
+    <form>
+        <div>
+            <label>
+                <span>Peso:</span><br>
+                <input id="peso" type="number">
+            </label>
+        </div>
+        <div>
+            <label>
+                <span>Altura:</span><br>
+                <input id="altura" type="number">
+            </label>
+        </div>
+        <div id="resultado"></div>
+    </form>
+
+    <script>
+        let peso, altura, imc
+
+        function onChange(event) {
+            peso = document.getElementById('peso').value
+            altura = document.getElementById('altura').value
+            imc = Number(peso) / Number(altura) ** 2
+            document.getElementById('resultado').textContent =
+                'IMC: ' + imc.toLocaleString('pt-br', {
+                    minimumFractionDigits: 4,
+                    maximumFractionDigits: 4
+                })
+        }
+
+        document.getElementById('peso').addEventListener('keyup', onChange)
+        document.getElementById('altura').addEventListener('keyup', onChange)
+
+    </script>
+</body>
+
+</html>
