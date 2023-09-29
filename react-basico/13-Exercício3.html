@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        /* 7) Após testar e comprovar o funcionamento, tire uma cópia do arquivo e refaça o exercício,
+            com cada input tendo sua própria função onChange e usando variáveis de estado(useState)
+            para armazenar os valores quando os inputs foram alterados. */
+
+        function Form() {
+
+            const [real, setReal] = React.useState()
+            const [dolar, setDolar] = React.useState()
+            
+            let result = Number(real) / Number(dolar)
+
+            return <>
+                <h1> Cotação do Dólar </h1>
+
+                <form>
+                    <div>
+                        <label>
+                            <span> Real: </span><br/>
+                            <input type="number" value={real} onChange={event => setReal(event.target.value)} />
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            <span> Dolar: </span><br />
+                            <input type="number" value={dolar} onChange={event => setDolar(event.target.value)} />
+                        </label>
+                    </div>
+
+                     <div>
+                        {
+                            'Cotação: ' + result.toLocaleString('pt-br', {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2
+                            })
+                        }
+                    </div>
+                </form>
+            </>
+        }
+
+        const container = <>
+            <Form />
+        </>
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(container)
+
+
+    </script>
+</body>
+</html>
