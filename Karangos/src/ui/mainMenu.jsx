@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Link from 'react-router-dom'
 
 export default function mainMenu() {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -36,9 +37,9 @@ export default function mainMenu() {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleClose} component = {lik} to = "/" divider>Profile</MenuItem>
+                <MenuItem onClick={handleClose} component={lik} to="/cars" divider>My account</MenuItem>
+                <MenuItem onClick={handleClose} component={lik} to="/customers" divider>My account<>Logout< /MenuItem>
             </Menu>
         </div>
     );
