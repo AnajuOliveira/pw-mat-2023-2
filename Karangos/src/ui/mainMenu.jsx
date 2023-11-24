@@ -1,10 +1,11 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Link from 'react-router-dom'
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom'
 
-export default function mainMenu() {
+export default function MainMenu() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -16,18 +17,18 @@ export default function mainMenu() {
 
     return (
         <div>
-            <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                <MenuIcon />
-            </IconButton>
-            <Button
+            <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu" sx={{ mr: 2 }}
                 id="basic-button"
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
             >
-                Dashboard
-            </Button>
+                <MenuIcon />
+            </IconButton>
             <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
@@ -37,9 +38,30 @@ export default function mainMenu() {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={handleClose} component = {lik} to = "/" divider>Profile</MenuItem>
-                <MenuItem onClick={handleClose} component={lik} to="/cars" divider>My account</MenuItem>
-                <MenuItem onClick={handleClose} component={lik} to="/customers" divider>My account<>Logout< /MenuItem>
+                <MenuItem
+                    onClick={handleClose}
+                    component={Link}
+                    to="/"
+                    divider
+                >
+                    Página inicial
+                </MenuItem>
+
+                <MenuItem
+                    onClick={handleClose}
+                    component={Link}
+                    to="/cars"
+                >
+                    Carros
+                </MenuItem>
+
+                <MenuItem
+                    onClick={handleClose}
+                    component={Link}
+                    to="/customers"
+                >
+                    Clientes
+                </MenuItem>
             </Menu>
         </div>
     );
